@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+	
+<mapper namespace="sql.safefood">
+
+	<insert id="restUserInsert" parameterType="user">
+		insert into member_u
+			values( #{email},#{passWord},#{name},#{allergy} )
+	</insert>
+
+	<select id="restUserSelect" parameterType="String" resultType="user">
+		select * from member_u where email = #{email}
+	</select>
+	
+	<update id="restUserUpdate" parameterType="user">
+		update member_u set pass_word = #{passWord}, name = #{name}, allergy = #{allergy} where email = #{email}
+	</update>
+	
+	<delete id="restUserDelete" parameterType="String">
+		delete from member_u where email = #{email}
+	</delete>
+	
+</mapper>
