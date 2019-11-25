@@ -12,6 +12,17 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	UserRepository repo;
 	
+	
+	@Override
+	public User signin(String email, String password) {
+		User user = repo.selectUser(email);
+		if (password.equals(user.getPassWord())) {
+			return user;
+		} else {
+			throw new RuntimeException("그런 사람 없어요 ~");
+		}
+	}
+	
 	@Override
 	public int insertUser(User user) {
 		return repo.insertUser(user);
@@ -31,5 +42,6 @@ public class UserServiceImpl implements UserService{
 	public int deleteUser(String email) {
 		return repo.deleteUser(email);
 	}
+
 
 }
